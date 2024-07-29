@@ -1,0 +1,33 @@
+.settings-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-sidebar {
+  width: 8rem;
+  margin: 10px;
+  height: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.settings-sidebar button {
+  text-align: left;
+}
+
+.settings-sidebar button {
+  width: 100% !important;
+}
+
+.settings-sidebar button.active {
+  filter: brightness(1.2);
+}
+
+.settings-content {
+  width: calc(100% - 9rem);
+  padding: 4px;
+}

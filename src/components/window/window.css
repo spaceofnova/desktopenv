@@ -1,0 +1,60 @@
+.window {
+  border: 1px solid rgb(61, 61, 61);
+  background-color: var(--sys-color-background);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  backdrop-filter: blur(0px);
+  transition: scale 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    backdrop-filter 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.window.transparencyEnabled {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(32px) brightness(0.5);
+}
+
+.window-header {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.title {
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  height: 24px;
+}
+
+.controls button {
+  border: none;
+  background-color: transparent;
+  aspect-ratio: 1;
+  width: 36px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  filter: brightness(1.2);
+}
+
+.window-content {
+  height: calc(100% - 24px); /* subtract header height to fix scrollbar */
+  width: 100%;
+  overflow: y auto;
+}
