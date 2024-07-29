@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { WindowManagerContext } from "../../providers/WindowManagerContext";
 import { apps } from "../../../assets/apps";
+import { BsQuestionCircle } from "react-icons/bs";
 
 export const AppIcon = ({
   application,
@@ -21,10 +22,20 @@ export const AppIcon = ({
         height: "100%",
         cursor: "pointer",
         position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         ...style,
       }}
     >
-      {app?.icons?.scalable}
+      {app?.icons?.scalable ?? (
+        <BsQuestionCircle
+          style={{
+            width: "80%",
+            height: "80%",
+          }}
+        />
+      )}
       <span
         style={{
           position: "absolute",

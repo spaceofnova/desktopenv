@@ -8,11 +8,11 @@ const WindowManager = () => {
     <div
       style={{
         position: "fixed",
-        top: 30,
+        top: 0,
         left: 0,
         width: "100vw",
-        height: "calc(100vh - 30px)",
-        zIndex: 100,
+        height: "100vh",
+        zIndex: 1,
       }}
     >
       {windows.map((window) => (

@@ -60,10 +60,24 @@ const Window = ({
       className={`window  ${
         preferences.transparencyEffects && "transparencyEnabled"
       }`}
-      bounds={"parent"}
+      // bounds={"parent"}
     >
-      {process?.controlsOnly ? (
-        <div className="controls draggable" style={{ zIndex: 100000 }}>
+      <div className="header window-header draggable">
+        <div className="title">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "80%",
+              aspectRatio: 1,
+              marginRight: 4,
+            }}
+          >
+            {process?.icons?.scalable}{" "}
+          </div>
+          {process?.name} {minimized && "MINIMIZED"}
+        </div>
+        <div className="controls">
           <button className="close" onClick={handleClose}>
             {
               icons.find((icon) => icon.name === preferences.iconPack)?.icons
@@ -71,21 +85,7 @@ const Window = ({
             }
           </button>
         </div>
-      ) : (
-        <div className="header window-header draggable">
-          <div className="title">
-            {process?.name} {minimized && "MINIMIZED"}
-          </div>
-          <div className="controls">
-            <button className="close" onClick={handleClose}>
-              {
-                icons.find((icon) => icon.name === preferences.iconPack)?.icons
-                  .close
-              }
-            </button>
-          </div>
-        </div>
-      )}
+      </div>
 
       {loading ? (
         <div style={{ width: "100%", height: "100%", display: "flex" }}>
