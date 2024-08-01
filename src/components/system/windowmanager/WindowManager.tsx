@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { WindowManagerContext } from "../../providers/WindowManagerContext";
-import Window from "../../window/Window";
+import { WindowManagerContext } from "@/providers/WindowManagerContext";
+import Window from "@/components/window/Window";
 
 const WindowManager = () => {
   const { windows }: { windows: any[] } = useContext(WindowManagerContext);

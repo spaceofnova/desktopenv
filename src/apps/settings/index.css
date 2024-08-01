@@ -7,16 +7,11 @@
 
 .settings-sidebar {
   width: 8rem;
-  margin: 10px;
   height: 100%;
   gap: 10px;
   display: flex;
   flex-direction: column;
   color: white;
-}
-
-.settings-sidebar button {
-  text-align: left;
 }
 
 .settings-sidebar button {

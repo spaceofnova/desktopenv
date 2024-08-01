@@ -1,5 +1,5 @@
 import React from "react";
-import { PrefrencesContext } from "../../providers/PrefrencesContext";
+import { PrefrencesContext } from "@/providers/PrefrencesContext";
 
 const Wallpaper = () => {
   const { preferences } = React.useContext(PrefrencesContext);

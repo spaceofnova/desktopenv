@@ -1,10 +1,23 @@
+import { useClickAway } from "@uidotdev/usehooks";
 import { AnimatePresence, motion } from "framer-motion";
 
-export const QSPanel = ({ isOpen }: { isOpen: boolean }) => {
+export const QSPanel = ({
+  isOpen,
+  setIsOpen,
+}: {
+  isOpen: boolean;
+  setIsOpen: any;
+}) => {
+  const ref = useClickAway(() => {
+    setIsOpen(false);
+  });
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          // @ts-ignore fuck you react types this works fine
+          ref={ref}
           initial={{
             x: 400,
           }}
@@ -22,14 +35,14 @@ export const QSPanel = ({ isOpen }: { isOpen: boolean }) => {
           }}
           style={{
             position: "fixed",
-            bottom: 48,
-            right: 8,
+            bottom: 40,
+            right: 0,
             width: 300,
-            height: 400,
+            height: "calc(100% - 40px)",
             display: "flex",
             flexDirection: "column",
             gap: 10,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "var(--sys-color-background)",
           }}
         ></motion.div>
       )}

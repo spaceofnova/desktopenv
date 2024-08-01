@@ -1,5 +1,5 @@
 import React from "react";
-import { WindowType } from "../../types/WindowTypes";
+import { WindowType } from "@/types/WindowTypes";
 
 export const WindowManagerContext = React.createContext({
   windows: [{}],

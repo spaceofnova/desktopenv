@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { walls } from "../../../assets/walls";
-import { PrefrencesContext } from "../../../components/providers/PrefrencesContext";
+import { walls } from "@/assets/walls";
+import { PrefrencesContext } from "@/providers/PrefrencesContext";
 
 const AppearanceModifier = () => {
   const { preferences, updatePrefrence } = useContext(PrefrencesContext);

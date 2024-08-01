@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { WindowType } from "../../types/WindowTypes";
+import { useContext, useState } from "react";
+import { WindowType } from "@/types/WindowTypes";
 import { WindowManagerContext } from "./WindowManagerContext";
-import { apps } from "../../assets/apps";
+import { AppsContext } from "@/assets/apps";
 
 const WindowManagerProvider = ({ children }: { children: React.ReactNode }) => {
+  const { apps } = useContext(AppsContext);
   const [windows, setWindows] = useState<WindowType[]>([]);
   const [maxZIndex, setMaxZIndex] = useState(0);
 

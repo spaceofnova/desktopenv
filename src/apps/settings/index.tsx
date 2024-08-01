@@ -15,8 +15,8 @@ const pages = [
   },
   {
     id: 2,
-    name: "Icons",
-    component: <div>Icons</div>,
+    name: "Display",
+    component: <div>Display</div>,
   },
 ];
 

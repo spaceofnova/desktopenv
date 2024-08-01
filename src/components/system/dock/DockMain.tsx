@@ -1,13 +1,24 @@
 import React from "react";
-import { AppIcon } from "../icon/AppIcon";
+import { AppIcon } from "@/components/system/icon/AppIcon";
 import { DateTime } from "./DateTime";
 import { QSPanel } from "./pages/QSPanel";
+import { AppList } from "./pages/AppList";
+import { useBattery } from "@uidotdev/usehooks";
+import { useFullscreen } from "rooks";
 
 const DockMain = () => {
+  const { supported, level } = useBattery();
+  const { isFullscreenEnabled, toggleFullscreen } = useFullscreen();
+
   const [QSOpen, setQSOpen] = React.useState(false);
+  const [appListOpen, setAppListOpen] = React.useState(false);
+
+  const pinnedApps = ["system.store", "system.settings", "system.about"];
+
   return (
     <>
-      <QSPanel isOpen={QSOpen} />
+      <AppList isOpen={appListOpen} setIsOpen={setAppListOpen} />
+      <QSPanel isOpen={QSOpen} setIsOpen={setQSOpen} />
       <div
         style={{
           width: "100%",
@@ -17,7 +28,7 @@ const DockMain = () => {
           position: "fixed",
           bottom: 0,
           left: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          backgroundColor: "var(--sys-color-background)",
           padding: "4px",
           zIndex: 2,
         }}
@@ -30,26 +41,42 @@ const DockMain = () => {
             height: "100%",
           }}
         >
-          <AppIcon application={"system.terminal"} />
-          <AppIcon application={"system.settings"} />
-          <AppIcon application={"system.browser"} />
+          <button onClick={() => setAppListOpen(!appListOpen)}>Apps</button>
+          {pinnedApps.map((app) => (
+            <AppIcon application={app} key={app} />
+          ))}
         </div>
-        <div
+        <button
           style={{
             display: "flex",
             gap: 10,
             height: "100%",
-            marginRight: 10,
+            marginRight: 8,
             width: "5rem",
             justifyContent: "center",
             alignItems: "center",
             background: "rgba(255, 255, 255, 0.1)",
-            cursor: "pointer",
           }}
           onClick={() => setQSOpen(!QSOpen)}
         >
           <DateTime />
-        </div>
+          {supported && <p>{level}%</p>}
+        </button>
+        <button
+          onClick={toggleFullscreen}
+          style={{
+            display: "flex",
+            gap: 10,
+            height: "100%",
+            marginRight: 8,
+            width: isFullscreenEnabled ? "8rem" : "5rem",
+            justifyContent: "center",
+            alignItems: "center",
+            background: "rgba(255, 255, 255, 0.1)",
+          }}
+        >
+          {isFullscreenEnabled ? "Exit Fullscreen" : "Fullscreen"}
+        </button>
       </div>
     </>
   );

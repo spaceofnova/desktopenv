@@ -1,11 +1,11 @@
 import { Rnd } from "react-rnd";
 import "./window.css";
-import { PrefrencesContext } from "../providers/PrefrencesContext";
+import { PrefrencesContext } from "@/providers/PrefrencesContext";
 import React from "react";
-import { icons } from "../../assets/Icons";
-import { apps } from "../../assets/apps";
-import { WindowType } from "../../types/WindowTypes";
-import { WindowManagerContext } from "../providers/WindowManagerContext";
+import { icons } from "@/assets/Icons";
+import { WindowType } from "@/types/WindowTypes";
+import { WindowManagerContext } from "@/providers/WindowManagerContext";
+import { AppsContext } from "@/assets/apps";
 
 const Window = ({
   id,
@@ -16,6 +16,7 @@ const Window = ({
   minimized?: boolean;
   zIndex: number;
 }) => {
+  const { apps } = React.useContext(AppsContext);
   const { preferences } = React.useContext(PrefrencesContext);
   const { removeWindow, bringToFront } = React.useContext(WindowManagerContext);
   const [process, setProcess] = React.useState<WindowType | undefined>();
