@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import { Popup } from "./popup";
 import installableApps from "@/store/apps";
+import { motion } from "framer-motion";
 
 const Store = () => {
   const [search, setSearch] = React.useState("");
@@ -37,7 +38,7 @@ const Store = () => {
       </div>
       {installableApps.map((app) => (
         <div
-          key={app.id}
+          key={app.processID}
           style={{
             display: "flex",
             gap: 10,
@@ -57,7 +58,30 @@ const Store = () => {
           </div>
         </div>
       ))}
-      <Popup app={popupApp} closePopup={closePopup} isOpen={popupOpen} />
+      {popupOpen && (
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 50,
+            duration: 0.3,
+          }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "var(--sys-color-background)",
+            zIndex: 10,
+          }}
+        >
+          <Popup app={popupApp} closePopup={closePopup} />
+        </motion.div>
+      )}
     </div>
   );
 };

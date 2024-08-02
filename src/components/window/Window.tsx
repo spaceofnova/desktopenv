@@ -15,7 +15,7 @@ const Window = ({
   id: string;
   minimized?: boolean;
   zIndex: number;
-}) => {
+}) => {   
   const { apps } = React.useContext(AppsContext);
   const { preferences } = React.useContext(PrefrencesContext);
   const { removeWindow, bringToFront } = React.useContext(WindowManagerContext);
@@ -25,7 +25,7 @@ const Window = ({
 
   React.useEffect(() => {
     setProcess({
-      ...apps.find((app) => app.processID === id)!,
+      ...apps.find((app: WindowType) => app.processID === id)!,
     });
     setLoading(false); // TODO: Fix loading
     setOpen(true);
@@ -52,7 +52,6 @@ const Window = ({
       }}
       style={{
         zIndex,
-        opacity: open ? 1 : 0,
       }}
       onMouseDown={handleWindowClick}
       minWidth={300}
@@ -60,7 +59,7 @@ const Window = ({
       dragHandleClassName="draggable"
       className={`window  ${
         preferences.transparencyEffects && "transparencyEnabled"
-      }`}
+      } ${open && "open"}`}
       // bounds={"parent"}
     >
       <div className="header window-header draggable">

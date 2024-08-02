@@ -30,10 +30,10 @@
 }
 
 :root {
-  --sys-color-background: rgb(36, 36, 36);
-  --sys-color-background-hover: rgb(41, 41, 41);
-  --sys-color-surface: rgb(53, 53, 53);
-  --sys-color-surface-hover: rgb(59, 59, 59);
+  --sys-color-background: rgb(8, 8, 8);
+  --sys-color-background-hover: rgb(20, 20, 20);
+  --sys-color-surface: rgb(32, 32, 32);
+  --sys-color-surface-hover: rgb(49, 49, 49);
 }
 
 a {

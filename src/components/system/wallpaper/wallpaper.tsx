@@ -22,7 +22,7 @@ const Wallpaper = () => {
           height: "100%",
           objectFit: "cover",
           position: "absolute",
-          zIndex: -1,
+          zIndex: -10,
           transition: "opacity 0.5s",
           opacity: 0,
         }}

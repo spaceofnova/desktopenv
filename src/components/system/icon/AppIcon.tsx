@@ -13,7 +13,7 @@ export const AppIcon = ({
   const { apps } = useContext(AppsContext);
   const { addWindow, windows } = useContext(WindowManagerContext);
   const isOpen = windows.find((w: any) => w.processID === application);
-  const app = apps.find((app) => app.processID === application);
+  const app = apps.find((app: any) => app.processID === application);
 
   return (
     app && (

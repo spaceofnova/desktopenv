@@ -1,20 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { AppIcon } from "@/components/system/icon/AppIcon";
 import { DateTime } from "./DateTime";
 import { QSPanel } from "./pages/QSPanel";
 import { AppList } from "./pages/AppList";
 import { useBattery } from "@uidotdev/usehooks";
 import { useFullscreen } from "rooks";
+import { WindowManagerContext } from "@/providers/WindowManagerContext";
+import { WindowType } from "@/types/WindowTypes";
+import Network from "./Network";
 
 const DockMain = () => {
   const { supported, level } = useBattery();
   const { isFullscreenEnabled, toggleFullscreen } = useFullscreen();
+  const { windows }: { windows: WindowType[] } =
+    useContext(WindowManagerContext);
 
   const [QSOpen, setQSOpen] = React.useState(false);
   const [appListOpen, setAppListOpen] = React.useState(false);
 
   const pinnedApps = ["system.store", "system.settings", "system.about"];
-
+  const [openApps, setOpenApps] = React.useState<any[]>([]);
+  useEffect(() => {
+    setOpenApps(
+      windows.filter((window) => !pinnedApps.includes(window.processID))
+    );
+  }, [windows]);
   return (
     <>
       <AppList isOpen={appListOpen} setIsOpen={setAppListOpen} />
@@ -30,7 +40,7 @@ const DockMain = () => {
           left: 0,
           backgroundColor: "var(--sys-color-background)",
           padding: "4px",
-          zIndex: 2,
+          zIndex: 200,
         }}
       >
         <div
@@ -45,6 +55,9 @@ const DockMain = () => {
           {pinnedApps.map((app) => (
             <AppIcon application={app} key={app} />
           ))}
+          {openApps.map((app) => (
+            <AppIcon application={app.processID} key={app.processID} />
+          ))}
         </div>
         <button
           style={{
@@ -52,7 +65,7 @@ const DockMain = () => {
             gap: 10,
             height: "100%",
             marginRight: 8,
-            width: "5rem",
+            width: supported ? "8rem" : "5rem",
             justifyContent: "center",
             alignItems: "center",
             background: "rgba(255, 255, 255, 0.1)",
@@ -60,7 +73,8 @@ const DockMain = () => {
           onClick={() => setQSOpen(!QSOpen)}
         >
           <DateTime />
-          {supported && <p>{level}%</p>}
+          <Network />
+          {supported && <p>{level && level * 100}%</p>}
         </button>
         <button
           onClick={toggleFullscreen}

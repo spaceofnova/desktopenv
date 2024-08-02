@@ -1,4 +1,3 @@
-import AppProvider from "@/assets/apps";
 import WindowManagerProvider from "@/providers/WindowManagerProvider";
 import DockMain from "@/components/system/dock/DockMain";
 import Wallpaper from "@/components/system/wallpaper/wallpaper";
@@ -14,13 +13,11 @@ function App() {
         overflow: "hidden",
       }}
     >
-      <AppProvider>
-        <WindowManagerProvider>
-          <DockMain />
-          <WindowManager />
-          <Wallpaper />
-        </WindowManagerProvider>
-      </AppProvider>
+      <WindowManagerProvider>
+        <DockMain />
+        <WindowManager />
+        <Wallpaper />
+      </WindowManagerProvider>
     </div>
   );
 }

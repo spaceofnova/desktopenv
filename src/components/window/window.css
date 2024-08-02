@@ -4,8 +4,15 @@
   border-radius: 4px;
   overflow: hidden;
   backdrop-filter: blur(0px);
+  opacity: 0;
+  scale: 0.8;
   transition: scale 0.2s ease-in-out, opacity 0.2s ease-in-out,
     backdrop-filter 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.window.open {
+  opacity: 1;
+  scale: 1;
 }
 
 .window.transparencyEnabled {

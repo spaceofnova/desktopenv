@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { WindowManagerContext } from "@/providers/WindowManagerContext";
 import { AppsContext } from "@/assets/apps";
 import { useClickAway } from "@uidotdev/usehooks";
+import "./applist.css";
+import { WindowType } from "@/types/WindowTypes";
 
 export const AppList = ({
   isOpen,
@@ -31,7 +33,7 @@ export const AppList = ({
             position: "fixed",
             display: "flex",
             flexDirection: "column",
-            gap: 10,
+            gap: 0,
             bottom: 40,
             left: 0,
             width: 200,
@@ -40,25 +42,24 @@ export const AppList = ({
             zIndex: 10,
           }}
         >
-          {apps.map((app) => (
-            <button
+          {apps.map((app: WindowType) => (
+            <div
+              className="tab"
               key={app.name}
-              style={{
-                width: "100%",
-                height: 32,
-                alignItems: "center",
-                display: "flex",
-                gap: 10,
-                padding: "0 10px",
-              }}
               onClick={() => {
                 addWindow(app.processID);
                 setIsOpen(false);
               }}
             >
-              <div>{app.icons?.scalable}</div>
+              <div
+                style={{
+                  marginLeft: 10,
+                }}
+              >
+                {app.icons?.scalable}
+              </div>
               {app.name}
-            </button>
+            </div>
           ))}
         </motion.div>
       )}
